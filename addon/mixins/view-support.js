@@ -44,8 +44,13 @@ export default Mixin.create({
     let qpVal = this.get(!!get(this, 'attrs.a') ? 'a' : `controller.${qp}`);
     let elem = $(`[data-${qp}="${qpVal}"]`);
     let scrollOffset = this.get('scrollOffset') || 0;
+    let scrollDuration = this.get('scrollDuration');
     let offset = (elem && elem.offset && elem.offset()) ? elem.offset().top : null;
-    if (offset) {
+    let totalOffset = offset + scrollOffset;
+
+    if (scrollDuration) {
+      $('body').animate({ scrollTop: totalOffset }, scrollDuration);
+    } else if (offset) {
       $('body').scrollTop(offset + scrollOffset);
     }
   }
