@@ -43,9 +43,10 @@ export default Mixin.create({
     let qp = this.get('anchorQueryParam');
     let qpVal = this.get(!!get(this, 'attrs.a') ? 'a' : `controller.${qp}`);
     let elem = $(`[data-${qp}="${qpVal}"]`);
+    let scrollOffset = this.get('scrollOffset') || 0;
     let offset = (elem && elem.offset && elem.offset()) ? elem.offset().top : null;
     if (offset) {
-      $('body').scrollTop(offset);
+      $('body').scrollTop(offset + scrollOffset);
     }
   }
 });
