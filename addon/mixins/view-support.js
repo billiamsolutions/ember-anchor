@@ -49,9 +49,9 @@ export default Mixin.create({
     let totalOffset = offset + scrollOffset;
 
     if (scrollDuration) {
-      $('body').animate({ scrollTop: totalOffset }, scrollDuration);
+      $('body, html').animate({ scrollTop: totalOffset }, scrollDuration);
     } else if (offset) {
-      $('body').scrollTop(offset + scrollOffset);
+      $('body, html').scrollTop(offset + scrollOffset);
     }
   }
 });
